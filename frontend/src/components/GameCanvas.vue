@@ -25,7 +25,10 @@ watch(() => props.running, (val) => {
 })
 
 onUnmounted(() => {
-  loop && loop.stop()
+  if (loop) {
+    loop.stop()
+    loop.cleanup()
+  }
 })
 </script>
 
