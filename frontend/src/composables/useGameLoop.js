@@ -1,4 +1,5 @@
-import { onMounted } from 'vue'
+// This composable no longer relies on Vue's lifecycle hooks so that it can be
+// initialized immediately when invoked.
 
 export default function useGameLoop(canvas) {
   const ctx = canvas.getContext('2d')
@@ -101,18 +102,23 @@ export default function useGameLoop(canvas) {
     state.running = false
   }
 
-  onMounted(() => {
-    canvas.width = canvas.clientWidth
-    canvas.height = canvas.clientHeight
-    state.player.x = canvas.width / 2
-    state.player.y = canvas.height - 60
-    window.addEventListener('keydown', keydown)
-    window.addEventListener('keyup', keyup)
-  })
+  function cleanup() {
+    window.removeEventListener('keydown', keydown)
+    window.removeEventListener('keyup', keyup)
+  }
+
+  // Initialize canvas size, player position and register keyboard handlers
+  canvas.width = canvas.clientWidth
+  canvas.height = canvas.clientHeight
+  state.player.x = canvas.width / 2
+  state.player.y = canvas.height - 60
+  window.addEventListener('keydown', keydown)
+  window.addEventListener('keyup', keyup)
 
   return {
     start,
     stop,
+    cleanup,
     state
   }
 }
