@@ -2,22 +2,21 @@
   <div class="touch-controls">
     <button
       class="control"
-      @touchstart.prevent="controls.pressLeft"
-      @touchend.prevent="controls.releaseLeft"
-      @mousedown.prevent="controls.pressLeft"
-      @mouseup.prevent="controls.releaseLeft"
+      @pointerdown.prevent="controls.pressLeft"
+      @pointerup.prevent="controls.releaseLeft"
+      @pointercancel.prevent="controls.releaseLeft"
+      @pointerleave.prevent="controls.releaseLeft"
     >◀</button>
     <button
       class="control"
-      @touchstart.prevent="controls.shoot"
-      @mousedown.prevent="controls.shoot"
+      @pointerdown.prevent="controls.shoot"
     >●</button>
     <button
       class="control"
-      @touchstart.prevent="controls.pressRight"
-      @touchend.prevent="controls.releaseRight"
-      @mousedown.prevent="controls.pressRight"
-      @mouseup.prevent="controls.releaseRight"
+      @pointerdown.prevent="controls.pressRight"
+      @pointerup.prevent="controls.releaseRight"
+      @pointercancel.prevent="controls.releaseRight"
+      @pointerleave.prevent="controls.releaseRight"
     >▶</button>
   </div>
 </template>
