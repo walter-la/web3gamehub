@@ -3,8 +3,8 @@
     <GameCanvas ref="canvas" :running="status==='playing'" />
     <UI :score="score" :status="status" @start="start" @restart="restart" />
     <TouchControls
-      v-if="status==='playing' && isTouch && canvas?.loop"
-      :controls="canvas.loop"
+      v-if="status==='playing' && isTouch && canvas?.loop?.value"
+      :controls="canvas.loop.value"
     />
   </div>
 </template>

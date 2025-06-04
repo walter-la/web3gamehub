@@ -11,25 +11,28 @@ const props = defineProps({
 })
 
 const canvas = ref(null)
-let loop
+const loop = ref(null)
 
 onMounted(() => {
-  loop = useGameLoop(canvas.value)
-  if (props.running) loop.start()
+  loop.value = useGameLoop(canvas.value)
+  if (props.running) loop.value.start()
 })
 
 defineExpose({ loop })
 
-watch(() => props.running, (val) => {
-  if (!loop) return
-  if (val) loop.start()
-  else loop.stop()
-})
+watch(
+  () => props.running,
+  (val) => {
+    if (!loop.value) return
+    if (val) loop.value.start()
+    else loop.value.stop()
+  }
+)
 
 onUnmounted(() => {
-  if (loop) {
-    loop.stop()
-    loop.cleanup()
+  if (loop.value) {
+    loop.value.stop()
+    loop.value.cleanup()
   }
 })
 </script>
