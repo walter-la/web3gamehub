@@ -20,7 +20,11 @@ const status = ref('start')
 const canvas = ref(null)
 const isTouch =
   typeof window !== 'undefined' &&
-  ('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  (
+    'ontouchstart' in window ||
+    navigator.maxTouchPoints > 0 ||
+    window.matchMedia('(pointer: coarse)').matches
+  )
 
 function start() {
   status.value = 'playing'
