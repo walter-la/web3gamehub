@@ -2,6 +2,7 @@
   <div class="game-view">
     <GameCanvas ref="canvas" :running="status==='playing'" />
     <UI :score="score" :status="status" @start="start" @restart="restart" />
+    <TouchControls v-if="isTouch && canvas?.loop" :controls="canvas.loop" />
   </div>
 </template>
 
@@ -9,9 +10,12 @@
 import { ref } from 'vue'
 import GameCanvas from '../components/GameCanvas.vue'
 import UI from '../components/UI.vue'
+import TouchControls from '../components/TouchControls.vue'
 
 const score = ref(0)
 const status = ref('start')
+const canvas = ref(null)
+const isTouch = 'ontouchstart' in window
 
 function start() {
   status.value = 'playing'
