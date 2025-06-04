@@ -1,8 +1,24 @@
 <template>
   <div class="touch-controls">
-    <button class="control" @touchstart.prevent="controls.pressLeft" @touchend.prevent="controls.releaseLeft">◀</button>
-    <button class="control" @touchstart.prevent="controls.shoot">●</button>
-    <button class="control" @touchstart.prevent="controls.pressRight" @touchend.prevent="controls.releaseRight">▶</button>
+    <button
+      class="control"
+      @touchstart.prevent="controls.pressLeft"
+      @touchend.prevent="controls.releaseLeft"
+      @mousedown.prevent="controls.pressLeft"
+      @mouseup.prevent="controls.releaseLeft"
+    >◀</button>
+    <button
+      class="control"
+      @touchstart.prevent="controls.shoot"
+      @mousedown.prevent="controls.shoot"
+    >●</button>
+    <button
+      class="control"
+      @touchstart.prevent="controls.pressRight"
+      @touchend.prevent="controls.releaseRight"
+      @mousedown.prevent="controls.pressRight"
+      @mouseup.prevent="controls.releaseRight"
+    >▶</button>
   </div>
 </template>
 
