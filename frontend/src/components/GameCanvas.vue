@@ -18,6 +18,8 @@ onMounted(() => {
   if (props.running) loop.start()
 })
 
+defineExpose({ loop })
+
 watch(() => props.running, (val) => {
   if (!loop) return
   if (val) loop.start()

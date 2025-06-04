@@ -91,6 +91,27 @@ export default function useGameLoop(canvas) {
     state.keys[e.code] = false
   }
 
+  // Exposed control helpers for touch interfaces
+  function pressLeft() {
+    state.keys['ArrowLeft'] = true
+  }
+
+  function releaseLeft() {
+    state.keys['ArrowLeft'] = false
+  }
+
+  function pressRight() {
+    state.keys['ArrowRight'] = true
+  }
+
+  function releaseRight() {
+    state.keys['ArrowRight'] = false
+  }
+
+  function shoot() {
+    state.bullets.push({ x: state.player.x, y: state.player.y })
+  }
+
   function start() {
     if (!state.running) {
       state.running = true
@@ -119,6 +140,11 @@ export default function useGameLoop(canvas) {
     start,
     stop,
     cleanup,
-    state
+    state,
+    pressLeft,
+    releaseLeft,
+    pressRight,
+    releaseRight,
+    shoot
   }
 }
