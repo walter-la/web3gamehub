@@ -46,5 +46,6 @@ const props = defineProps({
   color: white;
   font-size: 24px;
   pointer-events: auto;
+  touch-action: none;
 }
 </style>

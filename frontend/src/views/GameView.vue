@@ -25,6 +25,7 @@ const isTouch =
     navigator.maxTouchPoints > 0 ||
     window.matchMedia('(pointer: coarse)').matches
   )
+console.log('isTouch', isTouch)
 
 function start() {
   status.value = 'playing'
